@@ -17,25 +17,25 @@ const defaultProposals = [
   },
   {
     id: 2,
-    CityState: "Chicago, IL",
-    Road: "N California Ave",
-    closeDateFull: "September 5th, 2022",
+    CityState: "Laughlin, NV",
+    Road: "Needles Hwy",
+    closeDateFull: "September 10th, 2022",
     cost: 400,
     impact: 2500,
     upvotes: 11,
     imageUrl:
-      "https://images1.loopnet.com/i2/mtAKiyXi7p6GSM4I-4rHq96xuWJY_c85Jl4C7dH6OEk/110/2020-N-California-Ave-Chicago-IL-Primary-Photo-1-Large.jpg",
+      "https://images1.loopnet.com/i2/kVFWwAoFTL8bjE9B1D8VtsG4W9yLcgUU2qmd09_bjvs/110/3030-Needles-Hwy-Laughlin-NV-Primary-Photo-1-Large.jpg",
   },
   {
     id: 3,
-    CityState: "Miami, FL",
-    Road: "NW 1st Ave",
-    closeDateFull: "September 5th, 2022",
+    CityState: "Jackson, MS",
+    Road: "E Fortification St",
+    closeDateFull: "September 10th, 2022",
     cost: 450,
     impact: 2000,
     upvotes: 9,
     imageUrl:
-      "https://images1.apartments.com/i2/e60vkQudqQG9oMr7J5YhMd7iFA3lLHLAXbn-cW8fFjY/111/1000-nw-1st-ave-miami-fl-primary-photo.jpg",
+      "https://media-cdn.tripadvisor.com/media/photo-s/18/7f/95/5b/jackson-ms-is-known-as.jpg",
   },
 ];
 
