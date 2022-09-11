@@ -21,6 +21,55 @@ const locations = {
         title: "Isla Vista, CA",
         imageUrl:
           "https://dailynexus.s3.us-west-1.amazonaws.com/dailynexus/wp-content/uploads/2021/08/26165320/IMG_3445-1024x683.jpg",
+        food: [
+          {
+            name: "salmon",
+            quantity: 3,
+            imageUrl:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS649ljkRapPb9eqoFGEKa67qXXjEcNs_-Ou6NyNpoVl7ve4gwbGvxVJv-isty-GChp1HA&usqp=CAU",
+          },
+          {
+            name: "poultry",
+            quantity: 8,
+            imageUrl:
+              "https://media.istockphoto.com/photos/fresh-raw-chicken-picture-id1282866808?k=20&m=1282866808&s=170667a&w=0&h=hilUQUQHMS4S5pFyLo-yz34py0nwoUq05WgwUUZ2xaY=",
+          },
+          {
+            name: "banana",
+            quantity: 1,
+            imageUrl: "https://images.heb.com/is/image/HEBGrocery/000377497",
+          },
+          {
+            name: "peanuts",
+            quantity: 9,
+            imageUrl:
+              "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/4015_Jumbo+Roasted+P-uon1J4CC-zoom.jpg",
+          },
+          {
+            name: "apple",
+            quantity: 6,
+            imageUrl:
+              "https://i5.walmartimages.ca/images/Enlarge/094/514/6000200094514.jpg",
+          },
+          {
+            name: "broccoli",
+            quantity: 5,
+            imageUrl:
+              "https://domf5oio6qrcr.cloudfront.net/medialibrary/5390/h1218g16207258089583.jpg",
+          },
+          {
+            name: "grapes",
+            quantity: 3,
+            imageUrl:
+              "https://images.albertsons-media.com/is/image/ABS/184100012?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
+          },
+          {
+            name: "cheese",
+            quantity: 13,
+            imageUrl:
+              "https://cdn.britannica.com/60/217660-050-DBCC409A/cheddar-cheese-wedge.jpg",
+          },
+        ],
       },
       geometry: {
         coordinates: [-119.85897295511914, 34.415143997683394],
@@ -33,6 +82,55 @@ const locations = {
         title: "Oakland, CA",
         imageUrl:
           "https://cdn.discordapp.com/attachments/766168252056338442/1018387213647609856/unknown.png",
+        food: [
+          {
+            name: "carrot",
+            quantity: 31,
+            imageUrl:
+              "https://www.euroharvest.co.uk/wp-content/uploads/2020/07/carrots_.png",
+          },
+          {
+            name: "poultry",
+            quantity: 10,
+            imageUrl:
+              "https://media.istockphoto.com/photos/fresh-raw-chicken-picture-id1282866808?k=20&m=1282866808&s=170667a&w=0&h=hilUQUQHMS4S5pFyLo-yz34py0nwoUq05WgwUUZ2xaY=",
+          },
+          {
+            name: "kale",
+            quantity: 7,
+            imageUrl:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxAMM2ywgvaGIZcC1TqqVQyfHz4LRzCDpDX30zmUZOD5dCwyZ6hD4EolqW5NadmWRVku4&usqp=CAU",
+          },
+          {
+            name: "banana",
+            quantity: 4,
+            imageUrl: "https://images.heb.com/is/image/HEBGrocery/000377497",
+          },
+          {
+            name: "kiwi",
+            quantity: 20,
+            imageUrl:
+              "https://media.healthyfood.com/wp-content/uploads/2017/03/Ask-the-experts-Kiwifruit.jpg",
+          },
+          {
+            name: "broccoli",
+            quantity: 15,
+            imageUrl:
+              "https://domf5oio6qrcr.cloudfront.net/medialibrary/5390/h1218g16207258089583.jpg",
+          },
+          {
+            name: "grapes",
+            quantity: 12,
+            imageUrl:
+              "https://images.albertsons-media.com/is/image/ABS/184100012?$ng-ecom-pdp-desktop$&defaultImage=Not_Available",
+          },
+          {
+            name: "cheese",
+            quantity: 1,
+            imageUrl:
+              "https://cdn.britannica.com/60/217660-050-DBCC409A/cheddar-cheese-wedge.jpg",
+          },
+        ],
       },
       geometry: {
         coordinates: [-122.27244577304657, 37.8049573528661],
@@ -137,6 +235,7 @@ export default function Home() {
   };
 
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [query, setQuery] = useState("");
 
   return (
     <div>
@@ -155,7 +254,7 @@ export default function Home() {
           <main>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex justify-between">
               {selectedLocation && (
-                <div className="w-7xl overflow-hidden rounded-lg bg-white shadow w-[38%]">
+                <div className="w-7xl max-h-screen overflow-scroll rounded-lg bg-white shadow w-[38%]">
                   <img
                     className="h-60 w-full object-cover"
                     src={selectedLocation?.properties?.imageUrl}
@@ -169,6 +268,8 @@ export default function Home() {
                         <input
                           type="text"
                           name="search"
+                          onChange={(e) => setQuery(e.target.value)}
+                          value={query}
                           id="search"
                           placeholder="Search food"
                           className="block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -182,6 +283,60 @@ export default function Home() {
                           </svg>
                         </div>
                       </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4">
+                      {selectedLocation?.properties?.food
+                        ?.filter((item) =>
+                          item.name.toLowerCase().includes(query.toLowerCase())
+                        )
+                        ?.map((item) =>
+                          item.quantity > 0 ? (
+                            <div
+                              key={item.name}
+                              className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400"
+                            >
+                              <div className="flex-shrink-0">
+                                <img
+                                  className="h-10 w-10 rounded-full"
+                                  src={item.imageUrl}
+                                  alt=""
+                                />
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <p className="text-sm font-medium text-gray-900">
+                                  {item.name}
+                                </p>
+                                <p className="truncate text-sm text-gray-500">
+                                  x{item.quantity}
+                                </p>
+                              </div>
+
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setSelectedLocation({
+                                    ...selectedLocation,
+                                    properties: {
+                                      ...selectedLocation.properties,
+                                      food: selectedLocation.properties.food.map(
+                                        (foodItem) =>
+                                          foodItem.name === item.name
+                                            ? {
+                                                ...foodItem,
+                                                quantity: foodItem.quantity - 1,
+                                              }
+                                            : foodItem
+                                      ),
+                                    },
+                                  })
+                                }
+                                className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                              >
+                                Take
+                              </button>
+                            </div>
+                          ) : null
+                        )}
                     </div>
                   </div>
                 </div>
