@@ -1,7 +1,9 @@
 import "../styles/globals.css";
-
-import { Fragment, useState } from 'react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { ethers } from "ethers";
+import ErrorMessage from "./ErrorMessage";
+import TxList from "./TxList";
+import { Fragment, useState } from 'react';
+import { CheckIcon } from '@heroicons/react/24/outline';
 import { useRouter } from "next/router";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -31,11 +33,54 @@ function classNames(...classes) {
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const path = router.pathname;
+
   const navigation = routes.map((route) => ({
     ...route,
     current: route.href === path,
   }));
   const [open, setOpen] = useState(false)
+
+  const startPayment = async ({ setError, setTxs, ether, addr }) => {
+    try {
+      if (!window.ethereum)
+        throw new Error("No crypto wallet found. Please install it.");
+
+      console.log(window.ethereum)
+      await window.ethereum.send("eth_requestAccounts");
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      console.log("signer", signer);
+      ethers.utils.getAddress(addr);
+      const ttx = signer.sendTransaction({
+        to: addr,
+        value: ethers.utils.parseEther(ether)
+      });
+
+      console.log(tx);
+      const tx = await ttx;
+      console.log("hello")
+      console.log({ ether, addr });
+      console.log("tx", tx);
+      setTxs([tx]);
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+    }
+  };
+
+  const [error, setError] = useState();
+  const [txs, setTxs] = useState([]);
+
+  const handleSubmit = async () => {
+    setError();
+    console.log("Here")
+    await startPayment({
+      setError,
+      setTxs,
+      ether: "0.2",
+      addr: '0xa90b5b8c39886492b887403558070558b6b76b5a'
+    });
+  };
 
   return (
     <>
@@ -222,26 +267,47 @@ function MyApp({ Component, pageProps }) {
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                   <div>
                     <div className="text-center">
-                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 font-bold text-gray-900">
                         Contribute to the Cause
                       </Dialog.Title>
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          We greatly appreciate donations of all sizes. 
+                        <p className="text-base text-gray-500">
+                          We greatly appreciate donations of all sizes. You will be given voting coins to our DAO proportional to the amount you donate.
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-5 sm:mt-6">
-                    <a href="https://metamask.io/download/" target="blank">
+                  <div className="text-sm">
+                    <div>
+                      <div className="relative mt-4 rounded-md shadow-sm">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                          <span className="text-gray-500 sm:text-sm">$</span>
+                        </div>
+                        <input
+                          type="text"
+                          name="price"
+                          id="price"
+                          className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          placeholder="0.00"
+                          aria-describedby="price-currency"
+                        />
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                          <span className="text-gray-500 sm:text-sm" id="price-currency">
+                            MATIC
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                     <button
                       type="button"
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
-                      onClick={() => setOpen(false)}
+                      className="mt-2 inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
+                      onClick={handleSubmit}
                     >
-                      Pay With MetaMask
+                      Donate with MetaMask
                     </button>
-                    </a>
+                    <div className="mt-3 text-center">
+                      If you don't have MetaMask installed, you can download it <a href="https://metamask.io/download/" target="blank" className="text-indigo-500">here</a>
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
