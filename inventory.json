@@ -1,0 +1,82 @@
+[
+    {
+      "name": "carrot",
+      "quantity": 27,
+      "imageUrl": "https://www.euroharvest.co.uk/wp-content/uploads/2020/07/carrots_.png"
+    },
+    {
+      "name": "potato",
+      "quantity": 35,
+      "imageUrl": "https://s.cornershopapp.com/product-images/4233170.jpg?versionId=cKmFrlA8oY_MQzjxe1AGo52DbeE1dBi9"
+    },
+    {
+      "name": "spinach",
+      "quantity": 13,
+      "imageUrl": "https://images.heb.com/is/image/HEBGrocery/000319108"
+    },
+    {
+      "name": "eggs",
+      "quantity": 25,
+      "imageUrl": "https://static01.nyt.com/images/2019/02/05/world/05egg/15xp-egg-promo-superJumbo-v2.jpg"
+    },
+    {
+        "name": "salmon",
+        "quantity": 3,
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS649ljkRapPb9eqoFGEKa67qXXjEcNs_-Ou6NyNpoVl7ve4gwbGvxVJv-isty-GChp1HA&usqp=CAU"
+    },
+    {
+        "name": "poultry",
+        "quantity": 8,
+        "imageUrl": "https://media.istockphoto.com/photos/fresh-raw-chicken-picture-id1282866808?k=20&m=1282866808&s=170667a&w=0&h=hilUQUQHMS4S5pFyLo-yz34py0nwoUq05WgwUUZ2xaY="
+    },
+    {
+        "name": "kale",
+        "quantity": 2,
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxAMM2ywgvaGIZcC1TqqVQyfHz4LRzCDpDX30zmUZOD5dCwyZ6hD4EolqW5NadmWRVku4&usqp=CAU"
+    },
+    {
+        "name": "banana",
+        "quantity": 1,
+        "imageUrl": "https://images.heb.com/is/image/HEBGrocery/000377497"
+    },
+    {
+        "name": "peanuts",
+        "quantity": 9,
+        "imageUrl": "https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/4015_Jumbo+Roasted+P-uon1J4CC-zoom.jpg"
+    },
+    {
+        "name": "apple",
+        "quantity": 6,
+        "imageUrl": "https://i5.walmartimages.ca/images/Enlarge/094/514/6000200094514.jpg"
+    },
+    {
+        "name": "bagel",
+        "quantity": 20,
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bagel-Plain-Alt.jpg"
+    },
+    {
+        "name": "beans",
+        "quantity": 4,
+        "imageUrl": "https://www.allday.com.ph/media/catalog/product/8/0/80561813_fb_benguet_beans.jpg"
+    },
+    {
+        "name": "kiwi",
+        "quantity": 2,
+        "imageUrl": "https://media.healthyfood.com/wp-content/uploads/2017/03/Ask-the-experts-Kiwifruit.jpg"
+    },
+    {
+        "name": "broccoli",
+        "quantity": 5,
+        "imageUrl": "https://domf5oio6qrcr.cloudfront.net/medialibrary/5390/h1218g16207258089583.jpg"
+    },
+    {
+        "name": "grapes",
+        "quantity": 3,
+        "imageUrl": "https://images.albertsons-media.com/is/image/ABS/184100012?$ng-ecom-pdp-desktop$&defaultImage=Not_Available"
+    },
+    {
+        "name": "cheese",
+        "quantity": 13,
+        "imageUrl": "https://cdn.britannica.com/60/217660-050-DBCC409A/cheddar-cheese-wedge.jpg"
+    }
+]
