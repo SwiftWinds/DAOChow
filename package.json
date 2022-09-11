@@ -15,7 +15,8 @@
     "google-map-react": "^2.2.0",
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-no-ssr": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",

@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
 import { CalendarIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import NoSSR from "react-no-ssr";
 
 const defaultProposals = [
   {
     id: 1,
     CityState: "Santa Barbara, CA",
     Road: "Picasso Rd",
-    closeDateFull: "September 10th, 2022",
+    closeDateFull: "September 5th, 2022",
     cost: 300,
     impact: 1000,
     upvotes: 12,
@@ -18,7 +19,7 @@ const defaultProposals = [
     id: 2,
     CityState: "Chicago, IL",
     Road: "N California Ave",
-    closeDateFull: "September 10th, 2022",
+    closeDateFull: "September 5th, 2022",
     cost: 400,
     impact: 2500,
     upvotes: 11,
@@ -29,7 +30,7 @@ const defaultProposals = [
     id: 3,
     CityState: "Miami, FL",
     Road: "NW 1st Ave",
-    closeDateFull: "September 10th, 2022",
+    closeDateFull: "September 5th, 2022",
     cost: 450,
     impact: 2000,
     upvotes: 9,
@@ -42,8 +43,8 @@ export default function Proposals() {
   const [proposals, setProposals] = useState(defaultProposals);
   const calculateTimeLeft = () => {
     const d = new Date();
-    d.setHours(0,0,0,0);
-    d.setDate(d.getDate() + (((1 + 7 - d.getDay()) % 7) || 7));
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + ((1 + 7 - d.getDay()) % 7 || 7));
     const difference = +d - +new Date();
     let timeLeft = {};
 
@@ -69,10 +70,13 @@ export default function Proposals() {
 
   const timerComponents = [];
 
+  let isFirstComponent = true;
   Object.keys(timeLeft).forEach((interval) => {
-    if (!timeLeft[interval]) {
+    if (!timeLeft[interval] && isFirstComponent) {
       return;
     }
+
+    isFirstComponent = false;
 
     timerComponents.push(
       <span>
@@ -82,10 +86,12 @@ export default function Proposals() {
   });
   return (
     <>
-      <h1 className="text-2xl font-medium mt-4 text-center">
-        Time until voting ends:{" "}
-        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-      </h1>
+      <NoSSR>
+        <h1 className="text-2xl font-medium mt-4 text-center">
+          Time until voting ends:{" "}
+          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+        </h1>
+      </NoSSR>
       <div className="w-2/3 mt-4 mx-auto overflow-hidden bg-white shadow sm:rounded-md">
         <ul role="list" className="divide-y divide-gray-200">
           {proposals.map((proposal) => (

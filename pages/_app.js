@@ -7,10 +7,10 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
+  name: "Mateo Wang",
+  email: "mateowang.dev@gmail.com",
   imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    "https://lh3.googleusercontent.com/pw/AL9nZEUOHOzz1tZikwYVqzUlmujGHJSXxfjWRgpfN2vEPQRW3jMb6I1bM6gA9cvhatEfT0TPATUBz3koveWZdoiq7XGxqDlJOUgLaX6I9hH0hOxGPBXYlx8K-0lVy39M339lLjJSU6ch3HUx1RhOG95ynB0G5Q=s780-no?authuser=0",
 };
 
 const routes = [
