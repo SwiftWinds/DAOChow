@@ -12,9 +12,9 @@ const user = {
 };
 
 const navigation = [
-  { name: "Map", href: "#", current: true },
-  { name: "Proposals", href: "#", current: false },
-  { name: "Tasks", href: "#", current: false },
+  { name: "Map", href: "/", current: true },
+  { name: "Proposals", href: "proposals", current: false },
+  { name: "Tasks", href: "tasks", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center font-semibold text-xl">
-                    <span className="text-indigo-500">DAO</span>chow
+                  <a href="/"><span className="text-indigo-500">DAO</span>chow</a>
                   </div>
                   <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                     {navigation.map((item) => (
