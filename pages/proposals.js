@@ -91,6 +91,9 @@ export default function Proposals() {
           Time until voting ends:{" "}
           {timerComponents.length ? timerComponents : <span>Time's up!</span>}
         </h1>
+        <h1 className="text-2xl font-normal mt-4 text-center">
+            Vote on the potential new locations for this week
+        </h1>
       </NoSSR>
       <div className="w-2/3 mt-4 mx-auto overflow-hidden bg-white shadow sm:rounded-md">
         <ul role="list" className="divide-y divide-gray-200">

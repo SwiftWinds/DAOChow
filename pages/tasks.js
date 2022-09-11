@@ -41,6 +41,9 @@ export default function Example() {
 
   return (
     <>
+      <h1 className="text-2xl font-normal mt-4 text-center">
+            Select a task and earn rewards
+      </h1>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child
