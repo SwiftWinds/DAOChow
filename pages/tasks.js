@@ -12,7 +12,7 @@ import "@tensorflow/tfjs-backend-cpu";
 //import "@tensorflow/tfjs-backend-webgl";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 
-const tasks = [
+const defaultTasks = [
   {
     id: 1,
     CityState: "San Francisco, CA",
@@ -38,8 +38,8 @@ const tasks = [
     CityState: "Miami, FL",
     Road: "NW 1st Ave",
     closeDateFull: "September 11th, 2022",
-    cost: 0,
-    job: "Volunteer to be supervisor and assist people at the fridge",
+    cost: 30,
+    job: "Collect excess food from local groceries or restaurants",
     imageUrl:
       "https://images1.apartments.com/i2/e60vkQudqQG9oMr7J5YhMd7iFA3lLHLAXbn-cW8fFjY/111/1000-nw-1st-ave-miami-fl-primary-photo.jpg",
   },
@@ -53,15 +53,21 @@ export default function Example() {
   const [imgData, setImgData] = useState(null);
   const [hasFoundRefrigerator, setHasFoundRefrigerator] = useState(false);
   const [hasPredicted, setHasPredicted] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [tasks, setTasks] = useState(defaultTasks);
 
   const detectObjectsOnImage = async (imageElement) => {
     const model = await cocoSsd.load({});
     const predictions = await model.detect(imageElement, 6);
     setPredictions(predictions);
     setHasPredicted(true);
-    setHasFoundRefrigerator(
-      predictions.some((prediction) => prediction.class === "refrigerator")
+    const success = predictions.some(
+      (prediction) => prediction.class === "refrigerator"
     );
+    setHasFoundRefrigerator(success);
+    if (success) {
+      setTasks(tasks.filter((task) => task !== selectedTask));
+    }
     console.log("Predictions: ", predictions);
   };
 
@@ -254,6 +260,7 @@ export default function Example() {
                       <div className="flex overflow-hidden">
                         <button
                           onClick={() => {
+                            setSelectedTask(task);
                             setOpen(true);
                           }}
                           type="button"
