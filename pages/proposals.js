@@ -55,7 +55,7 @@ export default function Example() {
                       </div>
                     </div>
                     <div className="mt-4 font-bold flex text-xl text-gray-500">
-                        Number of people that will be impacted: <div className="ml-2 font-normal">{proposal.impact}</div>
+                        Impact: <div className="ml-2 font-normal">{proposal.impact}</div>
                     </div>
                     <div className="mt-4 font-bold flex text-xl text-gray-500">
                         Cost: <div className="ml-2 font-normal">${proposal.cost}</div>
