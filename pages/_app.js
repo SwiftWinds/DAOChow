@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 
 import { Fragment } from "react";
+import { useRouter } from "next/router";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -11,14 +12,14 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 
-const navigation = [
-  { name: "Map", href: "/", current: true },
-  { name: "Proposals", href: "proposals", current: false },
-  { name: "Tasks", href: "tasks", current: false },
+const routes = [
+  { name: "Map", href: "/" },
+  { name: "Proposals", href: "/proposals" },
+  { name: "Tasks", href: "/tasks" },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
+  { name: "Your Profile", href: "/profile" },
+  { name: "Settings", href: "/settings" },
   { name: "Sign out", href: "#" },
 ];
 
@@ -27,6 +28,12 @@ function classNames(...classes) {
 }
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const path = router.pathname;
+  const navigation = routes.map((route) => ({
+    ...route,
+    current: route.href === path,
+  }));
   return (
     <>
       <Disclosure as="nav" className="border-b border-gray-200 bg-white">
@@ -36,7 +43,9 @@ function MyApp({ Component, pageProps }) {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center font-semibold text-xl">
-                  <a href="/"><span className="text-indigo-500">DAO</span>chow</a>
+                    <a href="/">
+                      <span className="text-indigo-500">DAO</span>chow
+                    </a>
                   </div>
                   <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                     {navigation.map((item) => (

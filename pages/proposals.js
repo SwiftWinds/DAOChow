@@ -1,5 +1,4 @@
 import { CalendarIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import { useDebugValue } from 'react'
 
 const proposals = [
   {
@@ -55,7 +54,7 @@ export default function Example() {
                       </div>
                     </div>
                     <div className="mt-4 font-bold flex text-xl text-gray-500">
-                        Impact: <div className="ml-2 font-normal">{proposal.impact}</div>
+                        Impact: <div className="ml-2 font-normal">{proposal.impact} people</div>
                     </div>
                     <div className="mt-4 font-bold flex text-xl text-gray-500">
                         Cost: <div className="ml-2 font-normal">${proposal.cost}</div>
