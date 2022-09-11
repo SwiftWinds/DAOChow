@@ -3,42 +3,6 @@ import { useState, useEffect } from "react";
 import { CalendarIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import NoSSR from "react-no-ssr";
 
-const defaultProposals = [
-  {
-    id: 1,
-    CityState: "Santa Barbara, CA",
-    Road: "Picasso Rd",
-    closeDateFull: "September 5th, 2022",
-    cost: 300,
-    impact: 1000,
-    upvotes: 12,
-    imageUrl:
-      "https://images1.apartments.com/i2/TQj_6gsC8XV_rviAaQ6gi62Eb0qxFh1et5AACMODlIg/111/6694-picasso-rd-goleta-ca-primary-photo.jpg",
-  },
-  {
-    id: 2,
-    CityState: "Laughlin, NV",
-    Road: "Needles Hwy",
-    closeDateFull: "September 10th, 2022",
-    cost: 400,
-    impact: 2500,
-    upvotes: 11,
-    imageUrl:
-      "https://images1.loopnet.com/i2/kVFWwAoFTL8bjE9B1D8VtsG4W9yLcgUU2qmd09_bjvs/110/3030-Needles-Hwy-Laughlin-NV-Primary-Photo-1-Large.jpg",
-  },
-  {
-    id: 3,
-    CityState: "Jackson, MS",
-    Road: "E Fortification St",
-    closeDateFull: "September 10th, 2022",
-    cost: 450,
-    impact: 2000,
-    upvotes: 9,
-    imageUrl:
-      "https://media-cdn.tripadvisor.com/media/photo-s/18/7f/95/5b/jackson-ms-is-known-as.jpg",
-  },
-];
-
 export default function Proposals() {
   const [proposals, setProposals] = useState(defaultProposals);
   const calculateTimeLeft = () => {

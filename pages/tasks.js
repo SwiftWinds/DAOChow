@@ -12,39 +12,6 @@ import "@tensorflow/tfjs-backend-cpu";
 //import "@tensorflow/tfjs-backend-webgl";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 
-const defaultTasks = [
-  {
-    id: 1,
-    CityState: "San Francisco, CA",
-    Road: "Picasso Rd",
-    closeDateFull: "September 7th, 2022",
-    cost: 350,
-    job: "Purchase a fridge and put in on Hayes Street in San Francisco, CA",
-    imageUrl:
-      "https://images1.apartments.com/i2/TQj_6gsC8XV_rviAaQ6gi62Eb0qxFh1et5AACMODlIg/111/6694-picasso-rd-goleta-ca-primary-photo.jpg",
-  },
-  {
-    id: 2,
-    CityState: "Chicago, IL",
-    Road: "N California Ave",
-    closeDateFull: "September 10th, 2022",
-    cost: 30,
-    job: "Collect excess food from local groceries or restaurants",
-    imageUrl:
-      "https://images1.loopnet.com/i2/mtAKiyXi7p6GSM4I-4rHq96xuWJY_c85Jl4C7dH6OEk/110/2020-N-California-Ave-Chicago-IL-Primary-Photo-1-Large.jpg",
-  },
-  {
-    id: 3,
-    CityState: "Miami, FL",
-    Road: "NW 1st Ave",
-    closeDateFull: "September 11th, 2022",
-    cost: 30,
-    job: "Collect excess food from local groceries or restaurants",
-    imageUrl:
-      "https://images1.apartments.com/i2/e60vkQudqQG9oMr7J5YhMd7iFA3lLHLAXbn-cW8fFjY/111/1000-nw-1st-ave-miami-fl-primary-photo.jpg",
-  },
-];
-
 export default function Example() {
   const [open, setOpen] = useState(false);
 

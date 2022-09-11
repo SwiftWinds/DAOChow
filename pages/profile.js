@@ -1,19 +1,5 @@
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 
-const profile = {
-  name: "Mateo Wang",
-  imageUrl:
-    "https://lh3.googleusercontent.com/pw/AL9nZEUOHOzz1tZikwYVqzUlmujGHJSXxfjWRgpfN2vEPQRW3jMb6I1bM6gA9cvhatEfT0TPATUBz3koveWZdoiq7XGxqDlJOUgLaX6I9hH0hOxGPBXYlx8K-0lVy39M339lLjJSU6ch3HUx1RhOG95ynB0G5Q=s780-no?authuser=0",
-  coverImageUrl:
-    "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-  fields: {
-    Phone: "(408) 555-0173",
-    Email: "mateowang.dev@gmail.com",
-    "Voting Tokens": "3 (2 left this week)",
-    "Polygons contributed": 343.05,
-  },
-};
-
 const Profile = () => {
   return (
     <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none xl:order-last">

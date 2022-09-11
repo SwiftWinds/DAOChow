@@ -5,13 +5,6 @@ import { useRouter } from "next/router";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const user = {
-  name: "Mateo Wang",
-  email: "mateowang.dev@gmail.com",
-  imageUrl:
-    "https://lh3.googleusercontent.com/pw/AL9nZEUOHOzz1tZikwYVqzUlmujGHJSXxfjWRgpfN2vEPQRW3jMb6I1bM6gA9cvhatEfT0TPATUBz3koveWZdoiq7XGxqDlJOUgLaX6I9hH0hOxGPBXYlx8K-0lVy39M339lLjJSU6ch3HUx1RhOG95ynB0G5Q=s780-no?authuser=0",
-};
-
 const routes = [
   { name: "Map", href: "/" },
   { name: "Proposals", href: "/proposals" },
