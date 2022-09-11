@@ -1,7 +1,16 @@
 import { CalendarIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { FaceSmileIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  FaceSmileIcon,
+  FaceFrownIcon,
+  CalculatorIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+
+import "@tensorflow/tfjs-backend-cpu";
+//import "@tensorflow/tfjs-backend-webgl";
+import * as cocoSsd from "@tensorflow-models/coco-ssd";
 
 const tasks = [
   {
@@ -38,6 +47,49 @@ const tasks = [
 
 export default function Example() {
   const [open, setOpen] = useState(false);
+
+  const [isLoading, setLoading] = useState(false);
+  const [predictions, setPredictions] = useState([]);
+  const [imgData, setImgData] = useState(null);
+  const [hasFoundRefrigerator, setHasFoundRefrigerator] = useState(false);
+  const [hasPredicted, setHasPredicted] = useState(false);
+
+  const detectObjectsOnImage = async (imageElement) => {
+    const model = await cocoSsd.load({});
+    const predictions = await model.detect(imageElement, 6);
+    setPredictions(predictions);
+    setHasPredicted(true);
+    setHasFoundRefrigerator(
+      predictions.some((prediction) => prediction.class === "refrigerator")
+    );
+    console.log("Predictions: ", predictions);
+  };
+
+  const readImage = (file) => {
+    return new Promise((rs, rj) => {
+      const fileReader = new FileReader();
+      fileReader.onload = () => rs(fileReader.result);
+      fileReader.onerror = () => rj(fileReader.error);
+      fileReader.readAsDataURL(file);
+    });
+  };
+
+  const onSelectImage = async (e) => {
+    setPredictions([]);
+    setLoading(true);
+
+    const file = e.target.files[0];
+    const imgData = await readImage(file);
+    setImgData(imgData);
+
+    const imageElement = document.createElement("img");
+    imageElement.src = imgData;
+
+    imageElement.onload = async () => {
+      await detectObjectsOnImage(imageElement);
+      setLoading(false);
+    };
+  };
 
   return (
     <>
@@ -78,23 +130,54 @@ export default function Example() {
                     </button>
                   </div>
                   <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <FaceSmileIcon
-                        className="h-6 w-6 text-green-600"
-                        aria-hidden="true"
-                      />
+                    <div
+                      className={
+                        "mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10 " +
+                        (isLoading ? "bg-yellow-100" : "") +
+                        (hasPredicted && !hasFoundRefrigerator
+                          ? "bg-red-100"
+                          : "")
+                      }
+                    >
+                      {isLoading ? (
+                        <CalculatorIcon
+                          className="h-6 w-6 text-yellow-600"
+                          aria-hidden="true"
+                        />
+                      ) : hasPredicted && !hasFoundRefrigerator ? (
+                        <FaceFrownIcon
+                          className="h-6 w-6 text-red-600"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <FaceSmileIcon
+                          className="h-6 w-6 text-green-600"
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title
                         as="h3"
                         className="text-lg font-medium leading-6 text-gray-900"
                       >
-                        Verify task
+                        {isLoading
+                          ? "Verifying..."
+                          : hasPredicted
+                          ? hasFoundRefrigerator
+                            ? "Verified successfully!"
+                            : "Verification failed"
+                          : "Verify task"}
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Thank you for your help! Please click 'Upload' to
-                          take/upload an image of your contribution.
+                          {isLoading
+                            ? "Please wait while we verify your image..."
+                            : hasPredicted
+                            ? hasFoundRefrigerator
+                              ? "Thanks for your help! You've been awarded with 350 MATIC."
+                              : "Please try again with a different image."
+                            : "Thank you for your help! Please click 'Upload' to take/upload an image of your contribution."}
                         </p>
                       </div>
                     </div>
@@ -113,7 +196,12 @@ export default function Example() {
                     >
                       Cancel
                     </button>
-                    <input id="file-input" className="hidden" type="file" />
+                    <input
+                      onChange={onSelectImage}
+                      id="file-input"
+                      className="hidden"
+                      type="file"
+                    />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
