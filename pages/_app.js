@@ -1,9 +1,6 @@
 import "../styles/globals.css";
 import { ethers } from "ethers";
-import ErrorMessage from "./ErrorMessage";
-import TxList from "./TxList";
 import { Fragment, useState } from 'react';
-import { CheckIcon } from '@heroicons/react/24/outline';
 import { useRouter } from "next/router";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -280,9 +277,6 @@ function MyApp({ Component, pageProps }) {
                   <div className="text-sm">
                     <div>
                       <div className="relative mt-4 rounded-md shadow-sm">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                          <span className="text-gray-500 sm:text-sm">$</span>
-                        </div>
                         <input
                           type="text"
                           name="price"
